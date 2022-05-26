@@ -1,0 +1,116 @@
+        <div class="container-fluid pt-4 pb-5 pl-3 d-flex justify-content-center" id="UserInputFormContainer">
+            <div class="card " style="width: 50rem;" id="UserInputForm">
+                <div class="card-header"><h5>User Information Form</h5></div>
+                <div class="card-body">
+                    <form class="row g-3 needs-validation" role="form" id="UserInfo" action="mailto: ustropics@gmail.com" method="post" enctype="text/plain" novalidate >
+                        <div class="col-md-4">
+                            <label for="InputFirstName" class="form-label">First name</label>
+                            <input type="text" class="form-control" id="InputFirstName" data-error="Enter your name" placeholder="Enter First Name" required>
+                            <div class="valid-feedback">Valid first name!</div>
+                            <div class="invalid-feedback">Enter a first name.</div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="InputLastName" class="form-label">Last name</label>
+                            <input type="text" class="form-control" id="InputLastName" placeholder="Enter Last Name" required>
+                            <div class="valid-feedback">Valid last name!</div>
+                            <div class="invalid-feedback">Enter a last name.</div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="InputUserName" class="form-label">Username</label>
+                            <div class="input-group has-validation">
+                                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                <input type="text" class="form-control" id="InputUserName" aria-describedby="inputGroupPrepend" placeholder="Username" required>
+                                <div class="valid-feedback">Valid username!</div>
+                                <div class="invalid-feedback">Choose a username.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 pt-4">
+                            <label for="InputStreet" class="form-label">Street Address</label>
+                            <input type="text" class="form-control" id="InputStreet" placeholder="123 StreetName Ave." required>
+                            <div class="valid-feedback">Valid street address!</div>
+                            <div class="invalid-feedback">Provide a valid street address.</div>
+                        </div>
+                        <div class="col-md-6 pt-4">
+                            <label for="InputCity" class="form-label">City</label>
+                            <input type="text" class="form-control" id="InputCity" placeholder="Enter City" required>
+                            <div class="valid-feedback">Valid city!</div>
+                            <div class="invalid-feedback">Provide a valid city.</div>
+                        </div>
+                        <div class="col-md-3 pt-4">
+                            <label for="InputState" class="form-label">State</label>
+                            <select class="form-control" required="required" id="selectState">
+                                <option disabled selected value="">Select State...</option>
+                            </select>
+                            <div class="valid-feedback">Valid state!</div>
+                            <div class="invalid-feedback">Select a valid state.</div>
+                        </div>
+                        <div class="col-md-3 pt-4">
+                            <label for="InputZipCode" class="form-label">Zip</label>
+                            <input type="text" class="form-control" id="InputZipCode" pattern=".{5}" placeholder="12345" required>
+                            <div class="valid-feedback">Valid zip code!</div>
+                            <div class="invalid-feedback">Provide a valid zip code with 5 digits.</div>
+                        </div>
+                        <div class="col-md-12 pt-4">
+                            <label for="InputTextarea" class="form-label">Textarea</label>
+                            <textarea class="form-control" id="InputTextarea" placeholder="Input Text Message Here" required></textarea>
+                            <div class="valid-feedback">Valid text message!</div>
+                            <div class="invalid-feedback">Enter a message in the textarea.</div>
+                        </div>
+                        <div class="col-md-6 pt-4">
+                            <label for="InputEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="InputEmail" placeholder="email@provider.com" required>
+                            <div class="valid-feedback">Valid email!</div>
+                            <div class="invalid-feedback">Provide a valid email with an @ symbol.</div>
+                        </div>
+                        <div class="col-md-3 pt-4">
+                            <label for="InputPhoneNumber" class="form-label">Phone Number</label>
+                            <input type="text" class="form-control item" id="InputPhoneNumber" placeholder="(000)-123-4567" pattern=".{14}" required>
+                            <div class="invalid-feedback">Provide a valid phone number with area code.</div>
+                        </div>
+                        <div class="col-md-3 pt-4">
+                            <label for="InputBirthDate" class="form-label">Birth Date</label>
+                            <input type="text" class="form-control" id="InputBirthDate" placeholder="Select Date..." autocomplete="off" required>
+                            <div class="invalid-feedback">Select a valid birth date.</div>
+                        </div>
+                        <div class="col-md-12 pt-4">
+                            <label for="InputZipCode" class="form-label">What does 2 + 3 equal?</label>
+                            <input type="text" class="form-control" id="InputZipCode" pattern="5" placeholder="Please answer the question to prove you are human." required>
+                            <div class="valid-feedback">Valid response!</div>
+                            <div class="invalid-feedback">Provide a valid response.</div>
+                        </div>  
+                        <div class="col-12 pt-5">
+                            <button class="btn btn-primary" type="submit" id="submitBtn">Submit form</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="UserInputConfirm">
+                <div class="card" style="width: 50rem;">
+                    <div class="card-header"><h5>Confirm User Information</h5></div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><b>Full Name: </b><span id="UserFullName"></span></li>
+                            <li class="list-group-item"><b>Username: </b><span id="UserFullUserName"></span></li>
+                            <li class="list-group-item"><b>Full Adress: </b><span id="UserFullAddress"></span></li>
+                            <li class="list-group-item"><b>Contact Info: </b><span id="UserFullContactInfo"></span></li>
+                            <li class="list-group-item"><b>Birthday: </b><span id="UserBirthDate"></span></li>
+                            <li class="list-group-item"><b>Message: </b><span id="UserMessage"></span></li>
+                            <li class="list-group-item">
+                                <button type="button" class="btn btn-primary" id="sendEmail">Confirm</button>
+                                <button type="button" class="btn btn-danger" id="editBtn">Edit Information</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="UserInputSuccess">
+                <div class="card" style="width: 50rem;">
+                    <div class="card-header"><h5>Message Sent</h5></div>
+                    <div class="card-body">
+                        Your message and contact information has been successfully sent!<br><br>
+                        <a href="index.html" class="btn btn-primary">Go to homepage</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="../scripts/form-validation.js"></script>

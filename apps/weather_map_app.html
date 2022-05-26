@@ -1,0 +1,105 @@
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="../scripts/weather-map-functions.js" defer></script>
+
+
+<div class="container-fluid bg-light">
+    <div class="accordion accordion-flush" id="accordionWeatherMap">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" id="weatherMapButton">
+                Tropical Cyclone Tracking Map Information
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionWeatherMap">
+            <div class="accordion-body">
+                <div id="weather-map-info" style="position: relative; top: -15px;">
+                    <small class="text-muted">(this menu can be collapsed by clicking the title bar above)</small>
+                </div>
+                <div class="container-fluid rounded-1 text-center">
+                    <div class="container-fluid jumbotron-header-width">
+                        <h1 class="text-dark text-robotron">Tropical Cyclone Tracking Map</h1>
+                        <p class="lead text-muted text-robotron pt-2">
+                            An interactive tropical cyclone tracking map. Ditch the pencil and paper, and insert your own custom tracks! This uses plotly as the main engine for drawing, and uses an X, Y, Z coordinate system
+                            for plotting (each plot can be interacted with on the map). X value = longitude, Y value = latitude, and Z value = wind speed ().
+                        </p>
+                        <p class="text-center">
+                            <a href="https://jsfiddle.net/ustropics/zkjpeb4q/" target="_BLANK" class="btn btn-primary shadow-none my-2">JS Fiddle</a>
+                            <a href="https://github.com/mw-designs/web-systems" target="_BLANK" class="btn btn-dark shadow-none my-2">Github Repository</a>
+                          </p>
+                    </div>
+                    <div class="container-fluid jumbotron-header-width py-4">
+                        <img src="images/mw-logo-dark.png" id="bodyLogo" alt="Image Logo in Body">
+                        <p class="text-start">
+                            <small>
+                                <b>Developer Notes</b>: My major is meteorology, so I wanted to build something that would tell a story. There is no interactive plotter online that can easily create storm tracks, so thought this would be a fun project.
+                                I've done similar projects <a href="https://github.com/matthew-weiberg/weather_maps" target="_BLANK">in Python and Jupyter notebook</a>
+                                using model data (and matplotlibs/plotly), but just discovered plotly <a href="https://plotly.com/javascript/" target="_BLANK">has a fully functional javascript library</a>. 
+                                This project utilizes that library with custom settings. The user can select a tropical cyclone to intialize the map or enter their own coordinates and hit Build Map.
+                            </small>
+                        </p>
+                    </div>
+                <!-- Plotly chart will be drawn inside this div -->
+                <div class="container-fluid" style="max-width: 86rem;">
+                        <div class="container-fluid pt-2">
+                            <form>
+                                <div class="row">
+                                    <h3>Input values (or select a storm below)</h3>
+                                    <div class="col-sm">
+                                        <div class="form-group">
+                                            <label for="latitudeTextarea">Longitude Values</label>
+                                            <textarea class="form-control" id="longitudeTextarea" rows="3" placeholder=""></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm">
+                                        <div class="form-group">
+                                            <label for="longitudeTextarea">Latitude Values</label>
+                                            <textarea class="form-control" id="latitudeTextarea" rows="3" placeholder=""></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm">
+                                        <div class="form-group">
+                                            <label for="windsTextarea">Wind Speed</label>
+                                            <textarea class="form-control" id="windsTextarea" rows="3" placeholder=""></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="d-inline-flex pt-2">
+                                    <button type="button" class="btn btn-primary shadow-none" onclick="buildMap(); collapseWeatherMenu();" style="width:200px;">Build Map</button>
+                                    <div class="pt-2 px-4"><h5 class="text-muted">OR</h5></div>
+                                        <select class="form-select shadow-none" aria-label="Default select example" onchange="getSelectedTextValue(this); collapseWeatherMenu();" onmouseout="">
+                                            <option selected disabled>Select an Atlantic Storm from 2021</option>
+                                            <option value="1">Tropical Storm Ana</option>
+                                            <option value="2">Tropical Storm Bill</option>
+                                            <option value="3">Tropical Storm Claudette</option>
+                                            <option value="4">Tropical Storm Danny</option>
+                                            <option value="5">Hurricane Elsa</option>
+                                            <option value="6">Tropical Storm Fred</option>
+                                            <option value="7">Major Hurricane Grace</option>
+                                            <option value="8">Hurricane Henri</option>
+                                            <option value="9">Major Hurricane Ida</option>
+                                            <option value="10">Tropical Storm Kate</option>
+                                            <option value="11">Tropical Storm Julian</option>
+                                            <option value="12">Major Hurricane Larry</option>
+                                            <option value="13">Tropical Storm Mindy</option>
+                                            <option value="14">Hurricane Nicholas</option>
+                                            <option value="15">Tropical Storm Odette</option>
+                                            <option value="16">Tropical Storm Peter</option>
+                                            <option value="17">Tropical Storm Rose</option>
+                                            <option value="18">Major Hurricane Sam</option>
+                                            <option value="19">Subtropical Storm Teresa</option>
+                                            <option value="20">Tropical Storm Victor</option>
+                                            <!-- <option value="21"></option> -->
+                                        </select>
+                                    </div>
+                                </form> 
+                            </div>       
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+<div id="plotly-div"></div>

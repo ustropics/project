@@ -1,0 +1,84 @@
+
+<div class="container-fluid">
+    <div class="container-fluid py-3">
+        <div class="container-fluid jumbotron-header-width py-5">
+            <h1 class="jumbotron-heading text-center text-robotron">2021 Atlantic Cyclone Track Information</h1>
+            <p class="lead text-muted pt-2 text-center text-robotron">
+                A comprehensive set of the 2021 Atlantic hurricane season data. Simply type in a storm name or data value to filter each data set! 
+                Data is recorded typically every 6 hours (00z, 06z, 12z, and 18z) but may be increased during active threats. Latitude and longitude values for each storm can be plotted with our Interactive Map!
+            </p>
+            <p class="text-center">
+              <a href="https://github.com/mw-designs/web-systems" target="_BLANK" class="btn btn-primary shadow-none my-2">Github Repository</a>
+              <a href="https://roneaglin.online/cop4813/" target="_BLANK" class="btn btn-dark shadow-none my-2">JSON File</a>
+            </p>
+            <div class="container-fluid">
+              <img src="images/mw-logo-dark.png" id="bodyLogo" width="120" alt="Image Logo in Body">
+              <p class="text-justify pt-5">
+                  <small><b>Developer Notes: </b>Data is derived from NOAA's and WMO's collaborative International Best Track Archive for Climate Stewardship (IBTrACS), using a CSV file that is converted to JSON objects.
+                    For storm descriptions: <b>NR</b> - Not Reported, <b>DS</b> - Disturbance, <b>ET</b> - Extratropical, <b>SS</b> - Subtropical, and <b>TS</b> - Tropical. 
+                  Winds are in MPH, pressure is in MB, and all times are in ET.</small>
+              </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid bg-light">
+    <div class="container-fluid w-50 py-2">
+        <input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for names..">
+        <table id="myTable" class="table table-sm table-hover shadow rounded">
+            <tr class="header table-dark">
+                <th>Storm</th>
+                <th>Time</th>
+                <th>Description</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Winds</th>
+                <th>Pressure</th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script>
+array = [];
+
+$(document).ready(function () {
+    $.getJSON('../json/storm_data.json',
+    function (json) {
+        var tr;
+        for (var i = 0; i < json.length; i++) {
+            tr = $('<tr/>');
+            tr.append("<td>" + json[i].Storm + "</td>");
+            tr.append("<td>" + json[i].Time + "</td>");
+            tr.append("<td>" + json[i].Description + "</td>");
+            tr.append("<td>" + json[i].Latitude + "</td>");
+            tr.append("<td>" + json[i].Longitude + "</td>");
+            tr.append("<td>" + json[i].Winds + "</td>");
+            tr.append("<td>" + json[i].Pressure + "</td>");
+            $('table').append(tr);
+        }
+    });
+});
+
+function searchFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>

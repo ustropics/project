@@ -1,0 +1,46 @@
+<h1>Bouncing a Ball Around with HTML5 and JavaScript</h1>
+<div id="container">
+	
+	<canvas id="myCanvas" width="600" height="600"></canvas>
+    <input type="button" value="Start Game" onclick="init();">
+
+</div>
+
+<script>
+var context;
+var dx= 4;
+var dy=4;
+var y=150;
+var x=10;
+var color = "red";
+var size = 10;
+
+function init() {
+    context= myCanvas.getContext('2d');
+    setInterval(draw,10); // 10 defines the speed of object moving on canvas
+}
+
+function draw(){
+
+	context.clearRect(0,0,600,600);
+	context.beginPath();
+	context.fillStyle=color;
+	context.arc(x,y,size,0,Math.PI*2,true);
+	context.closePath();
+	context.fill();
+	if( x<0 || x>600)
+	dx=-dx;
+	if( y<0 || y>600)
+		dy=-dy;
+		x+=dx;
+		y+=dy;
+	}
+
+myCanvas.onclick = function() {
+color = "blue";
+size = 40;
+dy = 10;
+draw();
+}
+
+</script>

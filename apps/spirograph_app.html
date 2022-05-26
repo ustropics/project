@@ -1,0 +1,55 @@
+<script src="../scripts/spirograph-functions.js" defer></script>
+
+<div class="container-fluid">
+  <div class="container-fluid py-3">
+      <div class="container-fluid jumbotron-header-width py-5">
+          <h1 class="jumbotron-heading text-center text-robotron">Spirograph Drawing Program</h1>
+          <p class="lead text-muted pt-2 text-center text-robotron">
+            An HTML5 canvas drawing program. Create your own Spirograph below by setting custom options! Choose your own color, draw duration, outer and inner radius, and pen offset.
+          </p>
+          <hr/>
+          <div class="row">
+            <p class="text-start">
+              <img src="images/mw-logo-dark.png" style="width: 100px;" id="bodyLogo" alt="Image Logo in Body">
+              <small>
+                  <b>Developer Notes</b>: All options can be adjusted below, with a <b>Stop Drawing</b> button to end draw function immediately. 
+                  Outer radius value CANNOT be smaller than inner radius value. Drawing timer is in seconds. All modern browsers should support the color selector input. 
+              </small>
+          </p>
+        </div>
+          <div class="row pt-4">
+            <div class="col-sm-2">
+              <input type="text" id="outerRadius" class="spiroTextInput" value="220" onchange="getValues()"><br>
+              <label class="text-muted"><small>Outer Radius</small></label>
+            </div>
+            <div class="col-sm-2">
+              <input type="text" id="innerRadius" class="spiroTextInput" value="155" onchange="getValues()"><br>
+              <label class="text-muted"><small>Inner Radius</small></label>
+            </div>
+            <div class="col-sm-2">
+              <input type="text" id="offsetPen" class="spiroTextInput" value="180" onchange="getValues()"><br>
+              <label class="text-muted"><small>Pen Offset</small></label>
+            </div>
+            <div class="col-sm-2">
+              <input type="text" id="drawTimer" class="spiroTextInput" value="6" onchange="getValues()"><br>
+              <label class="text-muted"><small>Drawing Timer</small></label>
+            </div>
+            <div class="col-sm-2">
+              <div class="d-inline-flex">
+                <div style="width:180px; border: 1px solid grey;" id="userHexColor"></div>
+                <input type="color" onchange="getUserColor(event)" value="#000000">
+              </div>
+              <label class="text-muted"><small>Select Color</small></label>
+            </div>
+          </div>
+          <div class="py-4">
+            <button class="btn btn-primary shadow-none" id="startAnimation" onclick="doDrawing();">Start Drawing</button>
+            <button class="ml-1 btn btn-danger shadow-none" id="stopAnimation" onclick="stopDrawing();">Stop Drawing</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="container-fluid d-flex align-items-center justify-content-center bg-light">
+  <canvas id="myCanvas" width="1200" height="800" style="border: 0;" class="pt-5"></canvas>
+</div>

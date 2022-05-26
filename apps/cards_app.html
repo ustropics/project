@@ -1,0 +1,42 @@
+
+<div class="container-fluid">
+    <div class="container-fluid py-3">
+        <div class="container-fluid jumbotron-header-width py-5">
+            <h1 class="jumbotron-heading text-center text-robotron">Drag and Drop Memory Card Game</h1>
+            <p class="lead text-muted pt-2 text-center text-robotron">
+                Test your memory with this image matching game! Set custom settings below to adjust the difficult and hit <b>Deal Card</b> to begin—on the game board, there are always two identical images. Drag and drop the dealt card
+                with the correct corresponding card.
+            </p>
+            <div class="container-fluid">
+              <img src="images/mw-logo-dark.png" id="bodyLogo" width="120" alt="Image Logo in Body">
+              <p class="text-justify pt-5">
+                  <small><b>Developer Notes: </b>There are 67 available cards. The slider below can be adjusted to select the number of cards shown (and thus the difficulty of the game). The time that cards are shown can also be adjusted.
+                         The border will adjust colors when the card is hovered (red means its wrong, green is a correct choice).</small>
+              </p>
+            </div>
+        </div>
+        <div class="container-fluid pt-4" style="width: 60rem;">
+            <div class="row">
+                <div class="col-9">
+                    <input type="range" class="form-range" min="2" max="67" value="4" id="userCardValue" onchange="getUserValue();">
+                    <small class="text-muted">Select the number of cards: <span id="userValueText">4</span> cards selected</small><br>
+                </div>
+                <div class="col-3">
+                    <input type="text" value="1" id="userTimeValue" onchange="getUserValue();"><br>
+                    <small class="text-muted">Set time (in seconds)</small>
+                </div>
+                <div class="row pt-2">
+                    <div class="col-2">
+                        <input type="button" value="Deal Card" id="deal" class="btn btn-primary shadow-none" />
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="drop-targets" id="cardHolderContainer"></div>
+</div>
+
+<script src="../scripts/card-functions.js"></script>
